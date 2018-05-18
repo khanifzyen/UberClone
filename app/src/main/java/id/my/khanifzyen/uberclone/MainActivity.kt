@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.text.TextUtils
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
@@ -19,6 +20,7 @@ import com.google.firebase.database.FirebaseDatabase
 import id.my.khanifzyen.uberclone.Model.User
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.layout_register.*
+import kotlinx.android.synthetic.main.layout_register.view.*
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 import java.lang.Exception
@@ -28,6 +30,8 @@ class MainActivity : AppCompatActivity() {
     lateinit var auth: FirebaseAuth
     lateinit var db: FirebaseDatabase
     lateinit var users: DatabaseReference
+
+    private var TAG = MainActivity::class.java.simpleName
 
     //press ctrl+oauth = FirebaseAuth.getInstance()
     override fun attachBaseContext(newBase: Context?) {
@@ -81,25 +85,29 @@ class MainActivity : AppCompatActivity() {
                 dialogInterface?.dismiss()
                 //Snackbar.make(rootLayout,"Register Clicked",Snackbar.LENGTH_SHORT).show()
 
+                Log.d(TAG,"edt_email: " + register_layout.edt_email.text.toString())
+                Log.d(TAG,"edt_phone: " + register_layout.edt_phone.text.toString())
+                Log.d(TAG,"edt_name: " + register_layout.edt_name.text.toString())
+                Log.d(TAG,"edt_password: " + register_layout.edt_password.text.toString())
+
                 //check validation
-                //check validation
-                if(TextUtils.isEmpty(edt_email.text.toString())){
+                if(TextUtils.isEmpty(register_layout.edt_email.text.toString())){
                     Snackbar.make(rootLayout,"Please enter email address", Snackbar.LENGTH_SHORT).show()
                     return
                 }
-                if(TextUtils.isEmpty(edt_phone.text.toString())){
+                if(TextUtils.isEmpty(register_layout.edt_phone.text.toString())){
                     Snackbar.make(rootLayout,"Please enter phone", Snackbar.LENGTH_SHORT).show()
                     return
                 }
-                if(TextUtils.isEmpty(edt_name.text.toString())){
+                if(TextUtils.isEmpty(register_layout.edt_name.text.toString())){
                     Snackbar.make(rootLayout,"Please enter your name", Snackbar.LENGTH_SHORT).show()
                     return
                 }
-                if(TextUtils.isEmpty(edt_password.text.toString())){
+                if(TextUtils.isEmpty(register_layout.edt_password.text.toString())){
                     Snackbar.make(rootLayout,"Please enter password", Snackbar.LENGTH_SHORT).show()
                     return
                 }
-                if(edt_password.text.length < 6) {
+                if(register_layout.edt_password.text.length < 6) {
                     Snackbar.make(rootLayout,"Password too short",Snackbar.LENGTH_SHORT).show()
                     return
                 }
