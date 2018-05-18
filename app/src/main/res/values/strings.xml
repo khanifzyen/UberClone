@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Uber Clone</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_name">Name</string>
+    <string name="hint_phone">Phone</string>
+</resources>
